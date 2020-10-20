@@ -1,0 +1,12 @@
+MySQL-Connector-Python
+mysqlclient
+bs4
+Django
+django-openid-auth
+Jinja2
+jsonschema
+py
+requests
+SQLAlchemy
+unicodecsv
+urllib3
