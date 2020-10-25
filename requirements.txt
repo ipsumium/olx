@@ -10,3 +10,4 @@ requests
 SQLAlchemy
 unicodecsv
 urllib3
+re

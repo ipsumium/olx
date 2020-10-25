@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 't7y&s+@)o7dw^fnsmtp!#h5^_547dx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = ['0.0.0.0','198.211.99.20', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -77,7 +77,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'znakomstva',
-        'HOST': 'docker.for.mac.localhost',
+        'HOST': 'docker.for.win.localhost',
         'PORT': '3306',
         'USER': 'root',
         'PASSWORD': 'root'
