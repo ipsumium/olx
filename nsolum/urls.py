@@ -19,5 +19,6 @@ from nsolum import views
 import django.conf.urls
 
 urlpatterns = [
-    path('search/', views.search_page),
+    path('search/', views.search_page,name="search_function"),
+    path('searchform/', views.form_search_page),
 ]

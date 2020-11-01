@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+</style>
+
+
+<form action="{% url 'search_function' %}">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <h2 style="margin-top: 10px;">Search</h2>
+            <label for="keywords">Keywords</label>
+            <div class="form-group">
+                <textarea name="keywords_txtarea" type="text" rows="15" class="form-control" id="keywords">Calea mosilor
+Mantuleasa
+Pache Protopopescu
+Popa Tatu
+Matei Voievod
+Stirbei Voda
+Mihail Kogalniceanu
+Mihai Eminescu
+Toamnei
+Armeneasca
+Batistei
+Maria Rosetii
+Calea Calarasi
+Ferdinand
+Calusei
+Fainari
+Busolei
+Icoanei
+Gemeni</textarea>
+                <br>
+                <label for="url1">URL 1</label>
+                <input type="text" name="url1" class="form-control" id="url1" value="https://www.olx.ro/imobiliare/bucuresti/q-" />
+                <br>
+                <label for="url2">URL 2</label>
+                <input type="text" name="url2" class="form-control" id="url2" value="/?search%5Bfilter_float_price%3Afrom%5D=15000&search%5Bdescription%5D=1" />
+                <br>
+                <button type="submit" class="btn btn-primary btn-lg">Search</button>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</form>
