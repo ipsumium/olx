@@ -38,10 +38,11 @@ def olx_soup_append(kkeyword,link,results):
 
                 try:
                     prom_res['price'] = obj.find('p', {'class': 'price'}).get_text().replace('\n','').strip(' ')
-                    prom_res['sortprice'] = prom_res['price'].replace(" ", "")[:-1]
+                    prom_res['sortprice'] = int(prom_res['price'].replace(" ", "")[:-1])
                 except:
                     prom_res['price']="priceERR"
-                    prom_res['sortprice']="priceERR"
+                    prom_res['sortprice']=9900000
+                    print("price error")
 
                 try:
                     prom_res['location'] = obj.find('div', {'class': 'space rel'}).find('p',{'class':'lheight16'}, recursive=False).get_text().replace('\n','').strip(' ')
