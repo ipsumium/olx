@@ -10,7 +10,7 @@ import requests
 import mysql.connector
 import json
   
-def olx_soup_append(link,results):
+def olx_soup_append(kkeyword,link,results):
     prom_res = {}
     soup_main = BeautifulSoup(urllib.request.urlopen(link), features="html.parser")
     soup = soup_main.find('table', {'class': 'fixed offers breakword redesigned'})
@@ -19,6 +19,7 @@ def olx_soup_append(link,results):
         for obj in soup:
             try:
                 prom_res['nrno'] = len(results)+1
+                prom_res['keyword'] = kkeyword
 
                 try:
                     prom_res['title'] = obj.select('a.marginright5.link.linkWithHash')[0].get_text().replace('\n','').strip(' ')
@@ -56,7 +57,7 @@ def olx_soup_append(link,results):
         try:
             nextlink = soup_main.select('a[data-cy="page-link-next"]')[0]
             print("trying next page, counter=",len(results))
-            olx_soup_append(nextlink.get('href'),results)
+            olx_soup_append(kkeyword,nextlink.get('href'),results)
             del nextlink
         except:
             print("no next page found")
@@ -83,8 +84,9 @@ def search_page(request):
 
     for word in al:
         try:
+            kkeyword=word['word']
             link = urllib.request.Request(word['url'], headers={'User-Agent': 'Mozilla/5.0'})
-            olx_soup_append(link,results)
+            olx_soup_append(kkeyword,link,results)
         except:
             print("An exception occurred-main loop")
         

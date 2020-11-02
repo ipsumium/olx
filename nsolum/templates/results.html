@@ -120,6 +120,7 @@
                     <thead>
                         <tr>
                             <th scope="col">Nr</th>
+                            <th scope="col">Keyword</th>
                             <th scope="col">Image</th>
                             <th scope="col">Title</th>
                             <th scope="col">Price</th>
@@ -130,6 +131,7 @@
                         {%for i in results %}
                         <tr>
                             <th scope="row">{{i.nrno}}</th>
+                            <th scope="row">{{i.keyword}}</th>
                             <td class="w-25">
                                 <img src="{{i.image_link}}" class="img-fluid img-thumbnail" alt="">
                             </td>

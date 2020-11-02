@@ -1,4 +1,11 @@
+<!-- Enable bootstrap 4 theme -->
+<script>
+    window.__theme = 'bs4';
+</script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
 <style>
     html,
     body {
@@ -6,18 +13,22 @@
         height: 100%;
         overflow: hidden;
     }
+    
+    .cryptedmail:after {
+        content: attr(data-name) "@" attr(data-domain) "." attr(data-tld);
+    }
 </style>
 
-
-<form action="{% url 'search_function' %}">
-    {% csrf_token %}
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
-            <h2 style="margin-top: 10px;">Search</h2>
-            <label for="keywords">Keywords</label>
-            <div class="form-group">
-                <textarea name="keywords_txtarea" type="text" rows="15" class="form-control" id="keywords">Calea mosilor
+<body>
+    <form action="{% url 'search_function' %}">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <h2 style="margin-top: 10px;">Search</h2>
+                <label for="keywords">Keywords</label>
+                <div class="form-group">
+                    <textarea name="keywords_txtarea" type="text" rows="14" class="form-control" id="keywords">Calea mosilor
 Mantuleasa
 Pache Protopopescu
 Popa Tatu
@@ -36,16 +47,49 @@ Fainari
 Busolei
 Icoanei
 Gemeni</textarea>
-                <br>
-                <label for="url1">URL 1</label>
-                <input type="text" name="url1" class="form-control" id="url1" value="https://www.olx.ro/imobiliare/bucuresti/q-" />
-                <br>
-                <label for="url2">URL 2</label>
-                <input type="text" name="url2" class="form-control" id="url2" value="/?search%5Bfilter_float_price%3Afrom%5D=15000&search%5Bdescription%5D=1" />
-                <br>
-                <button type="submit" class="btn btn-primary btn-lg">Search</button>
+                    <br>
+                    <label for="url1">URL 1</label>
+                    <input type="text" name="url1" class="form-control" id="url1" value="https://www.olx.ro/imobiliare/bucuresti/q-" />
+                    <br>
+                    <label for="url2">URL 2</label>
+                    <input type="text" name="url2" class="form-control" id="url2" value="/?search%5Bfilter_float_price%3Afrom%5D=15000&search%5Bdescription%5D=1" />
+                </div>
+            </div>
+            <div class="col-md-1">
             </div>
         </div>
-        <div class="col-md-1"></div>
+        <div class="row align-items-end">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-5 text-center">
+                <button type="submit" class="btn btn-primary btn-lg">Search</button>
+            </div>
+            <div class="col-md-5 text-center">
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#contactModal">Contact</button>
+            </div>
+            <div class="col-md-1">
+            </div>
+        </div>
+    </form>
+
+    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contactModalLabel">Contact Us</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body">
+                    <p>Found a bug? Please leave a message here:
+                        <a href="#" class="cryptedmail" data-name="office" data-domain="viaform" data-tld="ro" onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld; return false;"></a>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-</form>
+</body>
