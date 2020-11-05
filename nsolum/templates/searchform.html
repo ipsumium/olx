@@ -23,8 +23,18 @@
     <form action="{% url 'search_function' %}">
         {% csrf_token %}
         <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
+            <div class="col-md-1 text-center" style="margin: auto;">
+                <button type="button" onclick="funcFZ1()" class="btn btn-outline-secondary btn-lg mr-1 mt-1">Z1</button>
+                <button type="button" onclick="funcFZ2()" class="btn btn-outline-secondary btn-lg mr-1 mt-1">Z2</button>
+                <button type="button" onclick="funcFZ3()" class="btn btn-outline-secondary btn-lg mr-1 mt-1">Z3</button>
+                <button type="button" onclick="funcFZ4()" class="btn btn-outline-secondary btn-lg mr-1 mt-1">Z4</button>
+                <button type="button" onclick="funcFZ5()" class="btn btn-outline-secondary btn-lg mr-1 mt-1">Z5</button>
+                <button type="button" onclick="funcFZ6()" class="btn btn-outline-secondary btn-lg mr-1 mt-1">Z6</button>
+                <button type="button" onclick="funcFZ7()" class="btn btn-outline-secondary btn-lg mr-1 mt-1">Z7</button>
+                <button type="button" onclick="funcztoate()" class="btn btn-outline-secondary btn-lg mr-1 mt-1">All</button>
+                <button type="button" class="btn btn-outline-info btn-lg mr-1 mt-1" data-toggle="modal" data-target="#infozoneModal">Info</button>
+            </div>
+            <div class="col-md-8">
                 <h2 style="margin-top: 10px;">Search</h2>
                 <label for="keywords">Keywords</label>
                 <div class="form-group">
@@ -43,47 +53,133 @@ Gemeni
 Lascar</textarea>
                     <br>
                     <label for="url1">URL 1</label>
-                    <input type="text" name="url1" class="form-control" id="url1" value="https://www.olx.ro/imobiliare/bucuresti/q-" />
+                    <input type="text" name="url1" class="form-control" id="url1" value="https://www.olx.ro/imobiliare/case-de-vanzare/bucuresti/q-" />
                     <br>
                     <label for="url2">URL 2</label>
-                    <input type="text" name="url2" class="form-control" id="url2" value="/?search%5Bfilter_float_price%3Afrom%5D=15000&search%5Bdescription%5D=1" />
+                    <input type="text" name="url2" class="form-control" id="url2" value="/?search%5Bfilter_float_price%3Afrom%5D=25000&search%5Bfilter_float_price%3Ato%5D=125000&search%5Bdescription%5D=1" />
                 </div>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-3">
+                <p class="h3" style="margin-top: 5%;">Filtre</p>
+                <button type="button" onclick="funcToate()" class="btn btn-outline-success btn-lg" style="margin-top: 5%;">Toate</button><br>
+                <button type="button" onclick="funcCase()" class="btn btn-outline-info btn-lg" style="margin-top: 5%;">Case</button><br>
+                <button type="button" onclick="funcApartamente()" class="btn btn-outline-warning btn-lg" style="margin-top: 5%;">Apartamente</button>
+                <hr>
+                <p class="h4" style="margin-top: 5%;">Pret</p>
+                <span class="h5">Min</span>
+                <input type="number" name="minprice" id="minprice" value="25000" style="max-width: 150px;" onchange="funcURL2()" />
+                <br><br>
+                <span class="h5">Max</span>
+                <input type="number" name="minprice" id="maxprice" value="125000" style="max-width: 150px;" onchange="funcURL2()" /><br>
+                <hr>
+                <input type="checkbox" style="width: 15px; height: 15px;" id="descrierecheck" checked onchange="funcURL2()">
+                <span class="h5">Descriere </span>
             </div>
         </div>
-        <div class="row align-items-end">
-            <div class="col-md-1">
+        <div class=" row align-items-end ">
+            <div class="col-md-1 ">
             </div>
-            <div class="col-md-5 text-center">
-                <button type="submit" class="btn btn-primary btn-lg">Search</button>
+            <div class="col-md-4 text-center ">
+                <button type="submit " class="btn btn-primary btn-lg ">Search</button>
             </div>
-            <div class="col-md-5 text-center">
+            <div class="col-md-4 text-center">
                 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#contactModal">Contact</button>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-3 ">
             </div>
         </div>
     </form>
 
-    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="contactModalLabel">Contact Us</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel " aria-hidden="true ">
+        <div class="modal-dialog " role="document ">
+            <div class="modal-content ">
+                <div class="modal-header ">
+                    <h5 class="modal-title " id="contactModalLabel ">Contact</h5>
+                    <button type="button" class="close " data-dismiss="modal" aria-label="Close ">
+            <span aria-hidden="true ">&times;</span>
+                </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body ">
                     <p>Found a bug? Please leave a message here:
-                        <a href="#" class="cryptedmail" data-name="office" data-domain="viaform" data-tld="ro" onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld; return false;"></a>
+                        <a href="# " class="cryptedmail" data-name="0x1x1x2x3" data-domain="gmail" data-tld="com" onclick="window.location.href='mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld; return false; "></a>
                     </p>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <div class="modal-footer ">
+                    <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade " id="infozonemodal" tabindex="-1 " role="dialog " aria-labelledby="infozoneModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="max-width : 45% ;">
+            <div class="modal-content ">
+                <div class="modal-header ">
+                    <h5 class="modal-title " id="infozoneModalLabel ">Zones</h5>
+                    <button type="button" class="close " data-dismiss="modal" aria-label="Close ">
+            <span aria-hidden="true ">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://i.ibb.co/YpRPG75/hh1.jpg" style="max-width:100%;display: block; margin:auto;">
+                </div>
+                <div class="modal-footer ">
+                    <!-- <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button> -->
                 </div>
             </div>
         </div>
     </div>
 </body>
+
+<script>
+    function funcCase() {
+        document.getElementById("url1").value = "https://www.olx.ro/imobiliare/case-de-vanzare/bucuresti/q-";
+    }
+
+    function funcApartamente() {
+        document.getElementById("url1").value = "https://www.olx.ro/imobiliare/apartamente-garsoniere-de-vanzare/bucuresti/q-";
+    }
+
+    function funcToate() {
+        document.getElementById("url1").value = "https://www.olx.ro/imobiliare/bucuresti/q-";
+    }
+
+    function funcURL2() {
+        if (document.getElementById("descrierecheck").checked == true) {
+            document.getElementById("url2").value = "/?search%5Bfilter_float_price%3Afrom%5D=" + String(document.getElementById("minprice").value) + "&search%5Bfilter_float_price%3Ato%5D=" + String(document.getElementById("maxprice").value) + "&search%5Bdescription%5D=1";
+        } else {
+            document.getElementById("url2").value = "/?search%5Bfilter_float_price%3Afrom%5D=" + String(document.getElementById("minprice").value) + "&search%5Bfilter_float_price%3Ato%5D=" + String(document.getElementById("maxprice").value);
+        }
+    }
+
+    function funcFZ1() {
+        document.getElementById("keywords").value = "Eminescu\nDacia\nSuvenir\nToamnei\nLuminei";
+    }
+
+    function funcFZ2() {
+        document.getElementById("keywords").value = "Eminescu\nDacia\nRusso\nMargareta Sterian\nDrobeta\nPhilippide\nPolona";
+    }
+
+    function funcFZ3() {
+        document.getElementById("keywords").value = "Polona\nDorobanti\nDavid Emanuel\nLacul Sarat\nIon Bogdan\nCaragea\nBogdanita\nSlavesti\nBrosteanu\nBalaban Emil";
+    }
+
+    function funcFZ4() {
+        document.getElementById("keywords").value = "Polona\nTunari\nVlaicu\nStefan Greceanu\nPaul Greceanu\nFecioarei\nBravurii\nIon Calin\nJustinian";
+    }
+
+    function funcFZ5() {
+        document.getElementById("keywords").value = "Tunari-Vasile lascar\nTunari\nVasile Lascar\nNastase Pamfil\nBarbu Murmuleanu\nFierari\nRaspantiilor\nDogarilor\nStrada Leonida\nDomnita Ruxandra\nIcoanei\nGhiocei\nIntrarea Galati\nBratului\nMargaritarelor\nComanita";
+    }
+
+    function funcFZ6() {
+        document.getElementById("keywords").value = "Vasile Lascar-Viitorului\nVasile Lascar\nViitorului\nBorzesti\nViesparilor\nSpiridon Iorceanu\nBadea Cartan\nBusolei\nRadu Afumati\nIon Ursu\nRasuri\nOcolului\nTraian Doda\nDespot Voda\nCosminului\nEducatiei\nHagi\nKirilov\nFauresti";
+    }
+
+    function funcFZ7() {
+        document.getElementById("keywords").value = "Viitorului - Mosilor\nViitorului\nCalea Mosilor\nFainari\nLuncsoara\nAleea Deda\nRovine\nPrecupetii\nRadovici\nMacelari\nCobilitei\nArdeleni\nColoniei\nToamnei\nTibana\nMonumentului\nDragos Voda\nIernii\nEpiscopul Radu\nIntrarea Ramnic\nMarcel Iancu\nMonahului";
+    }
+
+    function funcztoate() {
+        document.getElementById("keywords").value = "Eminescu\nDacia\nSuvenir\nToamnei\nLuminei\nRusso\nMargareta Sterian\nDrobeta\nPhilippide\nPolona\nDorobanti\nDavid Emanuel\nLacul Sarat\nIon Bogdan\nCaragea\nBogdanita\nSlavesti\nBrosteanu\nBalaban Emil\nTunari\nVlaicu\nStefan Greceanu\nPaul Greceanu\nFecioarei\nBravurii\nIon Calin\nJustinian\nVasile Lascar\nNastase Pamfil\nBarbu Murmuleanu\nFierari\nRaspantiilor\nDogarilor\nStrada Leonida\nDomnita Ruxandra\nIcoanei\nGhiocei\nIntrarea Galati\nBratului\nMargaritarelor\nComanita\nViitorului\nBorzesti\nViesparilor\nSpiridon Iorceanu\nBadea Cartan\nBusolei\nRadu Afumati\nIon Ursu\nRasuri\nOcolului\nTraian Doda\nDespot Voda\nCosminului\nEducatiei\nHagi\nKirilov\nFauresti\nCalea Mosilor\nFainari\nLuncsoara\nAleea Deda\nRovine\nPrecupetii\nRadovici\nMacelari\nCobilitei\nArdeleni\nColoniei\nTibana\nMonumentului\nDragos Voda\nIernii\nEpiscopul Radu\nIntrarea Ramnic\nMarcel Iancu\nMonahului";
+    }
+</script>
