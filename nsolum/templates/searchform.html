@@ -23,16 +23,7 @@
     <form action="{% url 'search_function' %}">
         {% csrf_token %}
         <div class="row">
-            <div class="col-md-1 text-center" style="margin: auto;">
-                <button type="button" onclick="funcFZ1()" class="btn btn-outline-secondary btn-lg mr-1 mt-1">Z1</button>
-                <button type="button" onclick="funcFZ2()" class="btn btn-outline-secondary btn-lg mr-1 mt-1">Z2</button>
-                <button type="button" onclick="funcFZ3()" class="btn btn-outline-secondary btn-lg mr-1 mt-1">Z3</button>
-                <button type="button" onclick="funcFZ4()" class="btn btn-outline-secondary btn-lg mr-1 mt-1">Z4</button>
-                <button type="button" onclick="funcFZ5()" class="btn btn-outline-secondary btn-lg mr-1 mt-1">Z5</button>
-                <button type="button" onclick="funcFZ6()" class="btn btn-outline-secondary btn-lg mr-1 mt-1">Z6</button>
-                <button type="button" onclick="funcFZ7()" class="btn btn-outline-secondary btn-lg mr-1 mt-1">Z7</button>
-                <button type="button" onclick="funcztoate()" class="btn btn-outline-secondary btn-lg mr-1 mt-1">All</button>
-                <button type="button" class="btn btn-outline-info btn-lg mr-1 mt-1" data-toggle="modal" data-target="#infozoneModal">Info</button>
+            <div class="col-md-1 text-center">
             </div>
             <div class="col-md-8">
                 <h2 style="margin-top: 10px;">Search</h2>
@@ -51,6 +42,24 @@ Calusei
 Fainari
 Gemeni
 Lascar</textarea>
+                    <span class="mt-1">Zone</span>
+                    <div class="btn-group mr-2 mt-1" role="group" aria-label="First group">
+                        <button type="button" onclick="funcFZ1()" class="btn btn-secondary">1</button>
+                        <button type="button" onclick="funcFZ2()" class="btn btn-secondary">2</button>
+                        <button type="button" onclick="funcFZ3()" class="btn btn-secondary">3</button>
+                        <button type="button" onclick="funcFZ4()" class="btn btn-secondary">4</button>
+                        <button type="button" onclick="funcFZ5()" class="btn btn-secondary">5</button>
+                        <button type="button" onclick="funcFZ6()" class="btn btn-secondary">6</button>
+                        <button type="button" onclick="funcFZ7()" class="btn btn-secondary">7</button>
+                        <button type="button" onclick="funcFZ8()" class="btn btn-secondary">8</button>
+                        <button type="button" onclick="funcFZ9()" class="btn btn-secondary">9</button>
+                        <button type="button" onclick="funcFZ10()" class="btn btn-secondary">10</button>
+                        <button type="button" onclick="funcFZ11()" class="btn btn-secondary">11</button>
+                        <button type="button" onclick="funcFZ12()" class="btn btn-secondary">12</button>
+                        <button type="button" onclick="funcFZ13()" class="btn btn-secondary">13</button>
+                        <button type="button" onclick="funcztoate()" class="btn btn-info">All</button>
+                        <button type="button" data-toggle="modal" data-target="#infozoneModal" class="btn btn-info">Info</button>
+                    </div>
                     <br>
                     <label for="url1">URL 1</label>
                     <input type="text" name="url1" class="form-control" id="url1" value="https://www.olx.ro/imobiliare/case-de-vanzare/bucuresti/q-" />
@@ -60,20 +69,20 @@ Lascar</textarea>
                 </div>
             </div>
             <div class="col-md-3">
-                <p class="h3" style="margin-top: 5%;">Filtre</p>
+                <p class="h3" style="margin-top: 5%;">Filters</p>
                 <button type="button" onclick="funcToate()" class="btn btn-outline-success btn-lg" style="margin-top: 5%;">Toate</button><br>
                 <button type="button" onclick="funcCase()" class="btn btn-outline-info btn-lg" style="margin-top: 5%;">Case</button><br>
-                <button type="button" onclick="funcApartamente()" class="btn btn-outline-warning btn-lg" style="margin-top: 5%;">Apartamente</button>
+                <button type="button" onclick="funcApartamente()" class="btn btn-outline-info btn-lg" style="margin-top: 5%;">Apartamente</button>
                 <hr>
-                <p class="h4" style="margin-top: 5%;">Pret</p>
+                <p class="h4" style="margin-top: 5%;">Price</p>
                 <span class="h5">Min</span>
-                <input type="number" name="minprice" id="minprice" value="25000" style="max-width: 150px;" onchange="funcURL2()" />
+                <input type="number" name="minprice" id="minprice" value="25000" style="max-width: 100px;" onchange="funcURL2()" /><span class="h5"> E</span>
                 <br><br>
                 <span class="h5">Max</span>
-                <input type="number" name="minprice" id="maxprice" value="125000" style="max-width: 150px;" onchange="funcURL2()" /><br>
+                <input type="number" name="minprice" id="maxprice" value="125000" style="max-width: 100px;" onchange="funcURL2()" /><span class="h5"> E</span><br>
                 <hr>
                 <input type="checkbox" style="width: 15px; height: 15px;" id="descrierecheck" checked onchange="funcURL2()">
-                <span class="h5">Descriere </span>
+                <span class="h5">Seach description</span>
             </div>
         </div>
         <div class=" row align-items-end ">
@@ -120,7 +129,7 @@ Lascar</textarea>
                 </button>
                 </div>
                 <div class="modal-body">
-                    <img src="https://i.ibb.co/YpRPG75/hh1.jpg" style="max-width:100%;display: block; margin:auto;">
+                    <img src="https://i.ibb.co/RB2b6pX/harta2.jpg" style="max-width:100%;display: block; margin:auto;">
                 </div>
                 <div class="modal-footer ">
                     <!-- <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button> -->
@@ -168,18 +177,42 @@ Lascar</textarea>
     }
 
     function funcFZ5() {
-        document.getElementById("keywords").value = "Tunari-Vasile lascar\nTunari\nVasile Lascar\nNastase Pamfil\nBarbu Murmuleanu\nFierari\nRaspantiilor\nDogarilor\nStrada Leonida\nDomnita Ruxandra\nIcoanei\nGhiocei\nIntrarea Galati\nBratului\nMargaritarelor\nComanita";
+        document.getElementById("keywords").value = "Tunari\nVasile Lascar\nNastase Pamfil\nBarbu Murmuleanu\nFierari\nRaspantiilor\nDogarilor\nStrada Leonida\nDomnita Ruxandra\nIcoanei\nGhiocei\nIntrarea Galati\nBratului\nMargaritarelor\nComanita";
     }
 
     function funcFZ6() {
-        document.getElementById("keywords").value = "Vasile Lascar-Viitorului\nVasile Lascar\nViitorului\nBorzesti\nViesparilor\nSpiridon Iorceanu\nBadea Cartan\nBusolei\nRadu Afumati\nIon Ursu\nRasuri\nOcolului\nTraian Doda\nDespot Voda\nCosminului\nEducatiei\nHagi\nKirilov\nFauresti";
+        document.getElementById("keywords").value = "Vasile Lascar\nViitorului\nBorzesti\nViesparilor\nSpiridon Iorceanu\nBadea Cartan\nBusolei\nRadu Afumati\nIon Ursu\nRasuri\nOcolului\nTraian Doda\nDespot Voda\nCosminului\nEducatiei\nHagi\nKirilov\nFauresti";
     }
 
     function funcFZ7() {
-        document.getElementById("keywords").value = "Viitorului - Mosilor\nViitorului\nCalea Mosilor\nFainari\nLuncsoara\nAleea Deda\nRovine\nPrecupetii\nRadovici\nMacelari\nCobilitei\nArdeleni\nColoniei\nToamnei\nTibana\nMonumentului\nDragos Voda\nIernii\nEpiscopul Radu\nIntrarea Ramnic\nMarcel Iancu\nMonahului";
+        document.getElementById("keywords").value = "Viitorului\nCalea Mosilor\nFainari\nLuncsoara\nAleea Deda\nRovine\nPrecupetii\nRadovici\nMacelari\nCobilitei\nArdeleni\nColoniei\nToamnei\nTibana\nMonumentului\nDragos Voda\nIernii\nEpiscopul Radu\nIntrarea Ramnic\nMarcel Iancu\nMonahului";
+    }
+
+    function funcFZ8() {
+        document.getElementById("keywords").value = "Dacia\nVasile Lascar\nViitorului\nSalcamilor\nDimitrie Paciurea\nLuca Stroici\nToamnei\nArmoniei\nVerii\nChiriac Bidoianu\nSilvestru\nOltarului\nParintele Galeriu\nPopa Petre";
+    }
+
+    function funcFZ9() {
+        document.getElementById("keywords").value = "Maria Rosetti\nAlexandru Donici\nLuca Stroici\nSperantei\nMarin Serghiescu\nInocentei\nPopa Rusu\nTermopile\nArmand Calinescu\nArcului\nArmeneasca\nLicurg\nFranzelarilor\nSilvestru\nCorbeni\nLatina\nSpatarului\nCercului\nSemilunei\nPasului\nRafael Sanzio";
+    }
+
+    function funcFZ10() {
+        document.getElementById("keywords").value = "Intrarea Urali\nGeorge Enescu\nDionisie Lupu\nIntrarea Amasului\nJules Michelet\nPitar Mos\nArthur Verona\nRosetti\nXenopol\nCristofor Columb\nIntrarea Sfatului\nEremia Grigorescu\nPolona\nGheorghe Cantacuzino\nDumbrava Rosie\nCalderon\nStrada Aurel Vlaicu\nPiata Spania\nDimitrie Orbescu\nIcoanei\nIon Movila\nCorneliu Botez\nAlexandru Donici\nSchitul Daravari";
+    }
+
+    function funcFZ11() {
+        document.getElementById("keywords").value = "Rosetti\nVasile Conta\nTraian Vuia\nNicolae Filipescu\nBlanduziei\nBatistei\nStrada Scoalei\nTudor Arghezi\nCalderon\nMasaryk\nPraporgescu\nLuca Caragiale\nSfantul Spiridon\nAaron Florian\nEmanoil Bacaloglu\nOtetari\nStrada Italiana\nStrada Sperantei\nConstantin Nacu\nSagetii\nStrada Dianei\nDimitrie Gerota";
+    }
+
+    function funcFZ12() {
+        document.getElementById("keywords").value = "Clopotarii Vechii\nGrigore Alexandrescu\nIntrarea Geneva\nCiprian Porumbescu\nMacarie Cantaretul\nBastiliei\nFabulistului\nConstantin Coanda\nIntrarea Baj\nPovernei\nViisoarei\nConstantin Daniel\nVisarion\nIntrarea Moneasa\nIon Slatineanu\nGrigore Cantilli\nStrada Craciun\nBeldiceanu\nDimitrie Giurescu\nMacedonski\nStanislav Cihoschi\nPiata Romana";
+    }
+
+    function funcFZ13() {
+        document.getElementById("keywords").value = "Ion Maiorescu\nCenusaresei\nTitu Maiorescu\nVaselor\nAprodul Purice\nCalusei\nOborul Nou\nHorei\nPop de Basesti\nDimitrie Salmen\nIancu Capitanu\nBiserica Pantelimon\nStrada Traian\nStrada Energiei\nRumeoara\nDimitrie Onciu\nZece Mese\nIntrarea Margareta\nOlari\nGrigore Ipatescu\nFerdinand\nFlondor\nVasile Storescu\nIon Vasilescu\nLirei\nIon Andreescu\nVladimir Streinu\nCostea Gheorghe\nMatasari\nFluierului\nIon Pantaru\nProtopopescu";
     }
 
     function funcztoate() {
-        document.getElementById("keywords").value = "Eminescu\nDacia\nSuvenir\nToamnei\nLuminei\nRusso\nMargareta Sterian\nDrobeta\nPhilippide\nPolona\nDorobanti\nDavid Emanuel\nLacul Sarat\nIon Bogdan\nCaragea\nBogdanita\nSlavesti\nBrosteanu\nBalaban Emil\nTunari\nVlaicu\nStefan Greceanu\nPaul Greceanu\nFecioarei\nBravurii\nIon Calin\nJustinian\nVasile Lascar\nNastase Pamfil\nBarbu Murmuleanu\nFierari\nRaspantiilor\nDogarilor\nStrada Leonida\nDomnita Ruxandra\nIcoanei\nGhiocei\nIntrarea Galati\nBratului\nMargaritarelor\nComanita\nViitorului\nBorzesti\nViesparilor\nSpiridon Iorceanu\nBadea Cartan\nBusolei\nRadu Afumati\nIon Ursu\nRasuri\nOcolului\nTraian Doda\nDespot Voda\nCosminului\nEducatiei\nHagi\nKirilov\nFauresti\nCalea Mosilor\nFainari\nLuncsoara\nAleea Deda\nRovine\nPrecupetii\nRadovici\nMacelari\nCobilitei\nArdeleni\nColoniei\nTibana\nMonumentului\nDragos Voda\nIernii\nEpiscopul Radu\nIntrarea Ramnic\nMarcel Iancu\nMonahului";
+        document.getElementById("keywords").value = "Eminescu\nDacia\nSuvenir\nToamnei\nLuminei\nRusso\nMargareta Sterian\nDrobeta\nPhilippide\nPolona\nDorobanti\nDavid Emanuel\nLacul Sarat\nIon Bogdan\nCaragea\nBogdanita\nSlavesti\nBrosteanu\nBalaban Emil\nTunari\nVlaicu\nStefan Greceanu\nPaul Greceanu\nFecioarei\nBravurii\nIon Calin\nJustinian\nVasile Lascar\nNastase Pamfil\nBarbu Murmuleanu\nFierari\nRaspantiilor\nDogarilor\nStrada Leonida\nDomnita Ruxandra\nIcoanei\nGhiocei\nIntrarea Galati\nBratului\nMargaritarelor\nComanita\nViitorului\nBorzesti\nViesparilor\nSpiridon Iorceanu\nBadea Cartan\nBusolei\nRadu Afumati\nIon Ursu\nRasuri\nOcolului\nTraian Doda\nDespot Voda\nCosminului\nEducatiei\nHagi\nKirilov\nFauresti\nCalea Mosilor\nFainari\nLuncsoara\nAleea Deda\nRovine\nPrecupetii\nRadovici\nMacelari\nCobilitei\nArdeleni\nColoniei\nTibana\nMonumentului\nDragos Voda\nIernii\nEpiscopul Radu\nIntrarea Ramnic\nMarcel Iancu\nMonahului\nSalcamilor\nDimitrie Paciurea\nLuca Stroici\nArmoniei\nVerii\nChiriac Bidoianu\nSilvestru\nOltarului\nParintele Galeriu\nPopa Petre\nMaria Rosetti\nAlexandru Donici\nSperantei\nMarin Serghiescu\nInocentei\nPopa Rusu\nTermopile\nArmand Calinescu\nArcului\nArmeneasca\nLicurg\nFranzelarilor\nCorbeni\nLatina\nSpatarului\nCercului\nSemilunei\nPasului\nRafael Sanzio\nIntrarea Urali\nGeorge Enescu\nDionisie Lupu\nIntrarea Amasului\nJules Michelet\nPitar Mos\nArthur Verona\nRosetti\nXenopol\nCristofor Columb\nIntrarea Sfatului\nEremia Grigorescu\nGheorghe Cantacuzino\nDumbrava Rosie\nCalderon\nStrada Aurel Vlaicu\nPiata Spania\nDimitrie Orbescu\nIon Movila\nCorneliu Botez\nSchitul Daravari\nVasile Conta\nTraian Vuia\nNicolae Filipescu\nBlanduziei\nBatistei\nStrada Scoalei\nTudor Arghezi\nMasaryk\nPraporgescu\nLuca Caragiale\nSfantul Spiridon\nAaron Florian\nEmanoil Bacaloglu\nOtetari\nStrada Italiana\nStrada Sperantei\nConstantin Nacu\nSagetii\nStrada Dianei\nDimitrie Gerota\nClopotarii Vechii\nGrigore Alexandrescu\nIntrarea Geneva\nCiprian Porumbescu\nMacarie Cantaretul\nBastiliei\nFabulistului\nConstantin Coanda\nIntrarea Baj\nPovernei\nViisoarei\nConstantin Daniel\nVisarion\nIntrarea Moneasa\nIon Slatineanu\nGrigore Cantilli\nStrada Craciun\nBeldiceanu\nDimitrie Giurescu\nMacedonski\nStanislav Cihoschi\nPiata Romana\nIon Maiorescu\nCenusaresei\nTitu Maiorescu\nVaselor\nAprodul Purice\nCalusei\nOborul Nou\nHorei\nPop de Basesti\nDimitrie Salmen\nIancu Capitanu\nBiserica Pantelimon\nStrada Traian\nStrada Energiei\nRumeoara\nDimitrie Onciu\nZece Mese\nIntrarea Margareta\nOlari\nGrigore Ipatescu\nFerdinand\nFlondor\nVasile Storescu\nIon Vasilescu\nLirei\nIon Andreescu\nVladimir Streinu\nCostea Gheorghe\nMatasari\nFluierului\nIon Pantaru\nProtopopescu";
     }
 </script>
