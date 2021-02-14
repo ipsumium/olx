@@ -83,6 +83,25 @@ Lascar</textarea>
                 <hr>
                 <input type="checkbox" style="width: 15px; height: 15px;" id="descrierecheck" checked onchange="funcURL2()">
                 <span class="h5">Seach description</span>
+                <div id="option-apartamente" style="visibility: hidden;">
+                    <input type="checkbox" style="width: 15px; height: 15px;" id="filtruap1" onchange="funcURLfiltruap1()">
+                    <span class="h5">Dupa 2000</span>
+                    <br>
+
+                    <input type="checkbox" style="width: 15px; height: 15px;" id="filtruap2" onchange="funcURLfiltruap2()">
+                    <span class="h5">1990-2000</span>
+                    <br>
+
+                    <input type="checkbox" style="width: 15px; height: 15px;" id="filtruap3" onchange="funcURLfiltruap3()">
+                    <span class="h5">1977-1990</span>
+                    <br>
+
+                    <input type="checkbox" style="width: 15px; height: 15px;" id="filtruap4" onchange="funcURLfiltruap4()">
+                    <span class="h5">inainte de 1977</span>
+                </div>
+
+
+
             </div>
         </div>
         <div class=" row align-items-end ">
@@ -142,14 +161,17 @@ Lascar</textarea>
 <script>
     function funcCase() {
         document.getElementById("url1").value = "https://www.olx.ro/imobiliare/case-de-vanzare/bucuresti/q-";
+        document.getElementById("option-apartamente").style.visibility = 'hidden';
     }
 
     function funcApartamente() {
         document.getElementById("url1").value = "https://www.olx.ro/imobiliare/apartamente-garsoniere-de-vanzare/bucuresti/q-";
+        document.getElementById("option-apartamente").style.visibility = 'visible';
     }
 
     function funcToate() {
         document.getElementById("url1").value = "https://www.olx.ro/imobiliare/bucuresti/q-";
+        document.getElementById("option-apartamente").style.visibility = 'hidden';
     }
 
     function funcURL2() {
@@ -157,6 +179,46 @@ Lascar</textarea>
             document.getElementById("url2").value = "/?search%5Bfilter_float_price%3Afrom%5D=" + String(document.getElementById("minprice").value) + "&search%5Bfilter_float_price%3Ato%5D=" + String(document.getElementById("maxprice").value) + "&search%5Bdescription%5D=1";
         } else {
             document.getElementById("url2").value = "/?search%5Bfilter_float_price%3Afrom%5D=" + String(document.getElementById("minprice").value) + "&search%5Bfilter_float_price%3Ato%5D=" + String(document.getElementById("maxprice").value);
+        }
+    }
+
+    function funcURLfiltruap1() {
+        if (document.getElementById("filtruap1").checked == true) {
+            strtemp = document.getElementById("url2").value
+            document.getElementById("url2").value = strtemp + "&search%5Bfilter_enum_constructie%5D%5B0%5D=dupa-2000";
+        } else {
+            strtemp = document.getElementById("url2").value.replace("&search%5Bfilter_enum_constructie%5D%5B0%5D=dupa-2000", "");
+            document.getElementById("url2").value = strtemp;
+        }
+    }
+
+    function funcURLfiltruap2() {
+        if (document.getElementById("filtruap2").checked == true) {
+            strtemp = document.getElementById("url2").value
+            document.getElementById("url2").value = strtemp + "&search%5Bfilter_enum_constructie%5D%5B1%5D=1990-2000";
+        } else {
+            strtemp = document.getElementById("url2").value.replace("&search%5Bfilter_enum_constructie%5D%5B1%5D=1990-2000", "");
+            document.getElementById("url2").value = strtemp;
+        }
+    }
+
+    function funcURLfiltruap3() {
+        if (document.getElementById("filtruap3").checked == true) {
+            strtemp = document.getElementById("url2").value
+            document.getElementById("url2").value = strtemp + "&search%5Bfilter_enum_constructie%5D%5B2%5D=1977-1990";
+        } else {
+            strtemp = document.getElementById("url2").value.replace("&search%5Bfilter_enum_constructie%5D%5B2%5D=1977-1990", "");
+            document.getElementById("url2").value = strtemp;
+        }
+    }
+
+    function funcURLfiltruap4() {
+        if (document.getElementById("filtruap4").checked == true) {
+            strtemp = document.getElementById("url2").value
+            document.getElementById("url2").value = strtemp + "&search%5Bfilter_enum_constructie%5D%5B3%5D=inainte-de-1977";
+        } else {
+            strtemp = document.getElementById("url2").value.replace("&search%5Bfilter_enum_constructie%5D%5B3%5D=inainte-de-1977", "");
+            document.getElementById("url2").value = strtemp;
         }
     }
 
