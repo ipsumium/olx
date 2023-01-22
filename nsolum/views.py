@@ -1,6 +1,6 @@
 from django.shortcuts import render
 # from django import forms
-from django.utils.translation import ugettext as _
+#from django.utils.translation import ugettext as _
 from django.shortcuts import redirect
 # from django.http import JsonResponse
 from bs4 import BeautifulSoup
@@ -10,6 +10,8 @@ import requests
 import mysql.connector
 # import json
 from multiprocessing import Pool
+import re
+import json
 
 def parselinks(word):
     results=[]
@@ -21,6 +23,21 @@ def parselinks(word):
         print("An exception occurred-main loop")
     return results
 
+def olx_ad(soup):
+    try:
+        for i in soup.select(".css-ox1ptj"):
+            if "utila" in i.get_text():
+                net_area=int(re.search(r'\d+',i.get_text()).group())
+    except:
+        pass
+    ad_id=int(re.search(r'\d+', soup.find("div", attrs={"data-cy": "ad-footer-bar-section"}).find("span").get_text()).group())
+    return ad_id, net_area
+
+def storia_ad(soup):
+    json_object = json.loads(soup.find('script', type='application/json', id="__NEXT_DATA__").contents[0])
+    ad_id=int(json_object['props']['pageProps']['ad']['id'])
+    net_area=int(float(json_object['props']['pageProps']['ad']['target']['Net_area']))
+    return ad_id, net_area
                  
 def olxhtmlparser(kkeyword,soup_main):
     results=[]
@@ -30,6 +47,26 @@ def olxhtmlparser(kkeyword,soup_main):
         soup = soup.find_all('tr', {'class': 'wrap'})
         for obj in soup:
             prom_res['keyword'] = kkeyword
+            prom_res['net_area']="n/a"
+            prom_res['ad_id']="n/a"
+            prom_res['psqm']="n/a"
+            
+            try:
+                prom_res['app_link'] = obj.select('a.marginright5.link.linkWithHash')[0].get('href')
+                html2 = requests.get(prom_res['app_link'])
+                soup2 = BeautifulSoup(html2.content, 'html.parser')
+            except:
+                prom_res['app_link']="app_link Error-Fix Me"
+                print("app_link Error-Fix Me")
+            try:
+                prom_res['ad_id'], prom_res['net_area']  = olx_ad(soup2)
+            except:
+                pass
+            try:
+                prom_res['ad_id'], prom_res['net_area'] = storia_ad(soup2)
+            except:
+                pass
+
             try:
                 prom_res['title'] = obj.select('a.marginright5.link.linkWithHash')[0].get_text().replace('\n','').strip(' ')
             except:
@@ -39,11 +76,6 @@ def olxhtmlparser(kkeyword,soup_main):
                 prom_res['image_link'] = obj.find('img', {'class': 'fleft'})['src'].replace('\n','').strip(' ')
             except:
                 prom_res['image_link']="https://gmtools.co.uk/wp-content/uploads/2014/12/blank-banner-200x200.jpg"
-            
-            try:
-                prom_res['app_link'] = obj.select('a.marginright5.link.linkWithHash')[0].get('href')
-            except:
-                prom_res['app_link']="app_link Error-Fix Me"
 
             try:
                 prom_res['price'] = obj.find('p', {'class': 'price'}).get_text().replace('\n','').strip(' ')
@@ -56,6 +88,14 @@ def olxhtmlparser(kkeyword,soup_main):
                 prom_res['location'] = obj.find('div', {'class': 'space rel'}).find('p',{'class':'lheight16'}, recursive=False).get_text().replace('\n','').strip(' ')
             except:
                 prom_res['location']="location Error-Fix Me"
+            
+            try:
+                prom_res['psqm']=int(int(prom_res['sortprice'])/int(prom_res['net_area']))
+                prom_res['sortpsqm']= prom_res['psqm']
+            except:
+                prom_res['psqm']="psqmERR"
+                prom_res['sortpsqm']=9900
+                print("psqm error")
             results.append(prom_res)
             prom_res={}
     return results
@@ -107,8 +147,14 @@ def search_page(request):
     for elem in mpresults:
         results.extend(elem)
 
+    existing_dicts = set()
+    filtered_list = []
+    for d in results:
+        if d['ad_id'] not in existing_dicts:
+            existing_dicts.add(d['ad_id'])
+            filtered_list.append(d)
 
-    return render(request, 'results.html', {'results': results, 'rang': len(results)})
+    return render(request, 'results.html', {'results': filtered_list, 'rang': len(filtered_list)})
 
 def form_search_page(request):
     return render(request, 'searchform.html')

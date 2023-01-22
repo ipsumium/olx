@@ -75,10 +75,10 @@ WSGI_APPLICATION = 'nsolum.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'znakomstva',
         'HOST': 'db',
-        'PORT': '3306',
+        'PORT': '5432',
         'USER': 'root',
         'PASSWORD': 'root'
     }

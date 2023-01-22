@@ -77,7 +77,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'znakomstva',
-        'HOST': 'db',
+        'HOST': 'docker.for.win.localhost',
         'PORT': '3306',
         'USER': 'root',
         'PASSWORD': 'root'

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django import forms
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import redirect
 from django.http import JsonResponse
 from bs4 import BeautifulSoup

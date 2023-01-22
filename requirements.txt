@@ -10,4 +10,4 @@ requests
 SQLAlchemy
 unicodecsv
 urllib3
-re
+django-mysql

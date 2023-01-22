@@ -1,6 +1,6 @@
 version: '2'
 services:
-  mysql-development:
+  db:
     image: mysql:8.0.17
     command: --default-authentication-plugin=mysql_native_password
     environment:
@@ -19,5 +19,5 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - "mysql-development"
-    command: ["./wait-for-it.sh", "mysql-development:3306", "--", "python", "manage.py","runserver","0.0.0.0:8080"]
+      - "db"
+    command: ["./wait-for-it.sh", "db:3306", "--", "python", "manage.py","runserver","0.0.0.0:8080"]
